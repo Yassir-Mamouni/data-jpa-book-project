@@ -27,6 +27,10 @@ public class BookService {
         }
         return bookRepo.save(entity);
     }
+    public List<Book> insertAll(List<Book> entities){
+
+        return bookRepo.saveAll(entities);
+    }
     public Book update(Book entity){
         Book book = findById(entity.getId());
         book.setName(entity.getName());

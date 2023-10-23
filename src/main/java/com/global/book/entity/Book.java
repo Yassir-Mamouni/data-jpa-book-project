@@ -10,7 +10,7 @@ public class Book {
     private Long id;
     private String name;
     private double price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 

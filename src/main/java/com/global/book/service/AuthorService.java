@@ -35,4 +35,8 @@ public class AuthorService {
     public void deleteById(Long id){
         authorRepo.deleteById(id);
     }
+
+    public List<Author> insertAll(List<Author> entity){
+        return authorRepo.saveAll(entity);
+    }
 }
