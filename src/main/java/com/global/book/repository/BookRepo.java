@@ -1,8 +1,11 @@
 package com.global.book.repository;
 
 import com.global.book.entity.Book;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,4 +20,10 @@ public interface BookRepo extends JpaRepository<Book,Long> {
     @Override
     @EntityGraph(attributePaths = {"author"})
     List<Book> findAll();
+    @Transactional
+    @Modifying
+    @Query("delete from Book where author.id = :id")
+    int deleteByAuthorId(Long id);
+
+
 }

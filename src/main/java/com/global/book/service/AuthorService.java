@@ -18,6 +18,9 @@ public class AuthorService {
     public Author findById(Long id){
         return authorRepo.findById(id).orElseThrow();
     }
+    public Author getOne(Long id){
+        return authorRepo.getReferenceById(id);
+    }
     public List<Author> findAll(){
         return authorRepo.findAll();
     }
