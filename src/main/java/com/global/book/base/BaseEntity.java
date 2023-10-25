@@ -16,6 +16,7 @@ public abstract class BaseEntity<ID extends Serializable> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
+    private String statusCode;
     @CreatedBy
     private String createdBy;
     @CreatedDate
@@ -63,5 +64,13 @@ public abstract class BaseEntity<ID extends Serializable> {
 
     public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
     }
 }
