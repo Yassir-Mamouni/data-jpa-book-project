@@ -23,12 +23,12 @@ public class BookController {
     public ResponseEntity<?> findAll(){
         return ResponseEntity.ok(bookService.findAll());
     }
-    @PostMapping()
+    @PostMapping("")
     public ResponseEntity<?> insert(@RequestBody Book entity){
         return ResponseEntity.ok(bookService.insert(entity));
     }
-    @PutMapping()
-        public ResponseEntity<?> update(Book entity){
+    @PutMapping("")
+        public ResponseEntity<?> update(@RequestBody Book entity){
         return ResponseEntity.ok(bookService.update(entity));
     }
     @DeleteMapping("/{id}")

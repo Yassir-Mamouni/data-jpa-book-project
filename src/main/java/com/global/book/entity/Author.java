@@ -1,18 +1,27 @@
 package com.global.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.global.book.base.BaseEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Formula;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Authors")
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Author extends BaseEntity<Long> {
+
     private String name;
+    @Formula("(select count(*) from books book where book.author_id=id)")
+    private long bookCount;
     @JsonManagedReference
     @OneToMany(mappedBy = "author")
     private List<Book> books =  new ArrayList<>();
@@ -22,14 +31,6 @@ public class Author {
     }
     public void removeBook(Book book){
         books.remove(book);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -47,4 +48,13 @@ public class Author {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
+    public long getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(long bookCount) {
+        this.bookCount = bookCount;
+    }
+
 }

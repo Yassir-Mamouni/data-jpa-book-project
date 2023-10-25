@@ -22,13 +22,13 @@ public class AuthorController {
     public ResponseEntity<?> findAll(){
         return ResponseEntity.ok(authorService.findAll());
     }
-    @PostMapping()
+    @PostMapping("")
     public ResponseEntity<?> insert(@RequestBody Author entity){
 
         return ResponseEntity.ok(authorService.insert(entity));
     }
-    @PutMapping()
-    public ResponseEntity<?> update(Author entity){
+    @PutMapping("")
+    public ResponseEntity<?> update(@RequestBody Author entity){
         return ResponseEntity.ok(authorService.update(entity));
     }
     @DeleteMapping("/{id}")
