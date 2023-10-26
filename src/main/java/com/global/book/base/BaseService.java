@@ -9,8 +9,12 @@ import java.util.List;
 
 @MappedSuperclass
 public class BaseService<T extends BaseEntity<ID>,ID extends Number > {
-    @Autowired
+
     private BaseRepository<T,ID> baseRepository;
+    
+    public BaseService(BaseRepository<T, ID> baseRepository) {
+        this.baseRepository = baseRepository;
+    }
 
     public T findById(ID id){
         return baseRepository.findById(id).orElseThrow();

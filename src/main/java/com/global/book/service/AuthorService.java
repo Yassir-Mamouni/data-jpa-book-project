@@ -12,6 +12,11 @@ import java.util.List;
 
 @Service
 public class AuthorService extends BaseService<Author,Long> {
+
+    public AuthorService(BaseRepository<Author, Long> baseRepository) {
+        super(baseRepository);
+    }
+
     @Override
     public Author update(Author entity) {
         Author author = findById(entity.getId());
