@@ -2,6 +2,7 @@ package com.global.book.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.base.BaseEntity;
+import com.global.book.validator.IpAdress;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,8 @@ import java.util.List;
 public class Author extends BaseEntity<Long> {
     @NotEmpty
     private String name;
+    @IpAdress(message = "Should enter a valid ip address")
+    private String ipAddress;
     @Formula("(select count(*) from books book where book.author_id=id)")
     private long bookCount;
     @JsonManagedReference
@@ -55,4 +58,11 @@ public class Author extends BaseEntity<Long> {
         this.bookCount = bookCount;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 }
