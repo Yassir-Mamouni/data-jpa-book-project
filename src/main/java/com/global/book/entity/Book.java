@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.base.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Formula;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,12 +20,16 @@ import java.time.LocalDateTime;
 @Table(name = "books")
 @EntityListeners(AuditingEntityListener.class)
 public class Book extends BaseEntity<Long> {
+    @NotNull
     private String name;
+    @Min(value = 5)
+    @Max(value = 500)
     private double price;
     @Transient
     private double discount;
     @Formula("(select count(*) from books)")
     private Long bookCount;
+    @NotNull(message = "should enter book name")
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")

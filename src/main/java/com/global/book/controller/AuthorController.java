@@ -2,6 +2,7 @@ package com.global.book.controller;
 
 import com.global.book.entity.Author;
 import com.global.book.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,12 @@ public class AuthorController {
         return ResponseEntity.ok(authorService.findAll());
     }
     @PostMapping("")
-    public ResponseEntity<?> insert(@RequestBody Author entity){
+    public ResponseEntity<?> insert(@RequestBody @Valid Author entity){
 
         return ResponseEntity.ok(authorService.insert(entity));
     }
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody Author entity){
+    public ResponseEntity<?> update(@RequestBody @Valid Author entity){
         return ResponseEntity.ok(authorService.update(entity));
     }
     @DeleteMapping("/{id}")

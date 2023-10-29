@@ -3,6 +3,7 @@ package com.global.book.controller;
 
 import com.global.book.entity.Book;
 import com.global.book.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +25,11 @@ public class BookController {
         return ResponseEntity.ok(bookService.findAll());
     }
     @PostMapping("")
-    public ResponseEntity<?> insert(@RequestBody Book entity){
+    public ResponseEntity<?> insert(@RequestBody @Valid Book entity){
         return ResponseEntity.ok(bookService.insert(entity));
     }
     @PutMapping("")
-        public ResponseEntity<?> update(@RequestBody Book entity){
+        public ResponseEntity<?> update(@RequestBody @Valid Book entity){
         return ResponseEntity.ok(bookService.update(entity));
     }
     @DeleteMapping("/{id}")
