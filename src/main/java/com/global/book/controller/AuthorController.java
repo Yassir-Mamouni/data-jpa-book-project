@@ -1,6 +1,7 @@
 package com.global.book.controller;
 
 import com.global.book.entity.Author;
+import com.global.book.entity.AuthorSearch;
 import com.global.book.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,9 @@ public class AuthorController {
     public ResponseEntity<?> deleteById(@PathVariable Long id){
        authorService.deleteById(id);
        return ResponseEntity.ok(null);
+    }
+    @PostMapping("/spec")
+    public ResponseEntity<?> findByAuthorSpec(@RequestBody AuthorSearch authorSearch){
+        return ResponseEntity.ok(authorService.findByAuthorSpec(authorSearch));
     }
 }

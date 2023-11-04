@@ -12,8 +12,8 @@ import org.hibernate.annotations.Where;
 
 import java.util.ArrayList;
 import java.util.List;
-@SQLDelete(sql = "update Authors set is_deleted = true where id= ?")
-@Where(clause = "is_deleted = false")
+//@SQLDelete(sql = "update Authors set is_deleted = true where id= ?")
+//@Where(clause = "is_deleted = false")
 @Entity
 @Table(name = "Authors")
 public class Author extends BaseEntity<Long> {
